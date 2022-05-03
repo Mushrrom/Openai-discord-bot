@@ -10,10 +10,7 @@ from discord_slash import SlashCommand, SlashContext
 #Dumb boring setup stuff
 load_dotenv()
 
-openai_token = os.getenv("OPENAI-TOKEN")
-bot_token = os.getenv("BOT-TOKEN")
-
-openaii.api_key = openai_token
+openaii.api_key = os.getenv("OPENAI-TOKEN")
 
 bot = commands.Bot(command_prefix='-')
 slash = SlashCommand(bot, sync_commands=True)
@@ -30,7 +27,7 @@ async def test(ctx):
 
 @slash.slash(name="openai", description="Ask GPT-3 something")
 async def openai(ctx, message):
-    print(message)
+    print(message)#Is self promotion really necessary?  Absolutely! 
     await ctx.send("```Loading ai... \nprompt = '%s'\n\nThis bot was made by hii#6002\n\nThe source of this project is available on github, check it out at https://github.com/Mushrrom/Openai-discord-bot```"%message)
     response = openaii.Completion.create(engine="text-davinci-002", prompt=message, temperature=1, max_tokens=400)
     print(response['choices'][0]['text'])
@@ -38,4 +35,4 @@ async def openai(ctx, message):
     print(str(len(response_txt)))
     await ctx.send(response_txt)
 
-bot.run(bot_token)
+bot.run(os.getenv("BOT-TOKEN"))
