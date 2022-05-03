@@ -33,7 +33,7 @@ async def openai(ctx, message):
     print(response['choices'][0]['text'])
     response_txt = str(response['choices'][0]['text'])
     print(str(len(response_txt)))
-    await ctx.send(response_txt) #I have wasted way too much time at twitch.tv/flexingseal
+    await ctx.send(response_txt) 
     #what am i doing I HAVE ENGLISH HOMEWORK I NEED TO DO
 
 bot.run(os.getenv("BOT-TOKEN"))
