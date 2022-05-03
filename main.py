@@ -29,10 +29,11 @@ async def test(ctx):
 async def openai(ctx, message):
     print(message)#Is self promotion really necessary?  Absolutely! 
     await ctx.send("```Loading ai... \nprompt = '%s'\n\nThis bot was made by hii#6002\n\nThe source of this project is available on github, check it out at https://github.com/Mushrrom/Openai-discord-bot```"%message)
-    response = openaii.Completion.create(engine="text-davinci-002", prompt=message, temperature=1, max_tokens=400)
+    response = openaii.Completion.create(engine="text-babbage-001", prompt=message, temperature=1, max_tokens=400)
     print(response['choices'][0]['text'])
     response_txt = str(response['choices'][0]['text'])
     print(str(len(response_txt)))
-    await ctx.send(response_txt)
+    await ctx.send(response_txt) #I have wasted way too much time at twitch.tv/flexingseal
+    #what am i doing I HAVE ENGLISH HOMEWORK I NEED TO DO
 
 bot.run(os.getenv("BOT-TOKEN"))
