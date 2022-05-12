@@ -39,11 +39,7 @@ async def openai(ctx, message):
     print(response['choices'][0]['text'])
     response_txt = str(response['choices'][0]['text'])
     print(str(len(response_txt)))
-<<<<<<< HEAD
     await openai_response.edit(content="prompt: %s\n```%s %s %s```"% (message, message, response_txt, selfpromo))
-=======
-    await ctx.send(response_txt) 
->>>>>>> 5fb7cba71168c4928dada3c2fe06e960ed95ef34
     #what am i doing I HAVE ENGLISH HOMEWORK I NEED TO DO
 
 bot.run(os.getenv("BOT-TOKEN"))
