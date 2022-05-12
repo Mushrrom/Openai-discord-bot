@@ -2,3 +2,5 @@
 .env.bak
 *.env
 *.bak
+image.png
+*.png
