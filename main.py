@@ -30,16 +30,24 @@ async def test(ctx):
 async def openai(ctx, message):
     print(message)#Is self promotion really necessary?  Absolutely!
     if random.randint(1, 2) == 1:
-        selfpromo = "\n\nThis bot was made by hii#6002"
+        selfpromo = "This bot was made by hii#6002"
     else:
-        selfpromo = "\n\nThe source of this project is available on github, check it out at https://github.com/Mushrrom/Openai-discord-bot"
-    openai_response = await ctx.send("```prompt = '%s'\nLoading ai... %s```"%(message, selfpromo))
+        selfpromo = "The source of this project is available on github, check it out at https://github.com/Mushrrom/Openai-discord-bot"
+    responseembed = discord.Embed(title="OpenAI text response", description = "Prompt: %s"%message, colour=discord.Colour.green())
+    responseembed.set_footer(text = selfpromo)
+    responseembed.add_field(name = "Response", value = "Loading response...")
+    responseembed.set_thumbnail(url="https://cdn.discordapp.com/attachments/974174975793709056/974187217658454036/lp-logo-3-888629431.png")
+    messagee = await ctx.send(embed=responseembed)
     response = openaii.Completion.create(engine="text-babbage-001", prompt=message, temperature=1, max_tokens=400)
+    #--------------------------------------------------------
     print(response)
     print(response['choices'][0]['text'])
     response_txt = str(response['choices'][0]['text'])
-    print(str(len(response_txt)))
-    await openai_response.edit(content="prompt: %s\n```%s %s %s```"% (message, message, response_txt, selfpromo))
+    #-----------------------------------------------------------
+
+    
+    responseembed.set_field_at(index=0, name="Response", value = "%s `%s`"%(message,response_txt))
+    await messagee.edit(embed=responseembed)
     #what am i doing I HAVE ENGLISH HOMEWORK I NEED TO DO
 
 bot.run(os.getenv("BOT-TOKEN"))
