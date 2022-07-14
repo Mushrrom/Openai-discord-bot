@@ -33,11 +33,14 @@ async def openai(ctx, message):
         selfpromo = "This bot was made by hii#6002"
     else:
         selfpromo = "The source of this project is available on github, check it out at https://github.com/Mushrrom/Openai-discord-bot"
+    #embed creation
     responseembed = discord.Embed(title="OpenAI text response", description = "Prompt: %s"%message, colour=discord.Colour.green())
     responseembed.set_footer(text = selfpromo)
     responseembed.add_field(name = "Response", value = "Loading response...")
     responseembed.set_thumbnail(url="https://cdn.discordapp.com/attachments/974174975793709056/974187217658454036/lp-logo-3-888629431.png")
     messagee = await ctx.send(embed=responseembed)
+    #Wow thats annoying
+    #Get response
     response = openaii.Completion.create(engine="text-babbage-001", prompt=message, temperature=1, max_tokens=400)
     #--------------------------------------------------------
     print(response)
@@ -46,8 +49,8 @@ async def openai(ctx, message):
     #-----------------------------------------------------------
 
     
-    responseembed.set_field_at(index=0, name="Response", value = "%s `%s`"%(message,response_txt))
-    await messagee.edit(embed=responseembed)
+    responseembed.set_field_at(index=0, name="Response", value = "%s `%s`"%(message,response_txt))#set field
+    await messagee.edit(embed=responseembed)#Edit original message
     #what am i doing I HAVE ENGLISH HOMEWORK I NEED TO DO
 
 bot.run(os.getenv("BOT-TOKEN"))
