@@ -28,7 +28,6 @@ async def test(ctx):
 
 @slash.slash(name="openai", description="Ask GPT-3 something")
 async def openai(ctx, message):
-    print(message)#Is self promotion really necessary?  Absolutely!
     if random.randint(1, 2) == 1:
         selfpromo = "This bot was made by hii#6002"
     else:
@@ -42,15 +41,13 @@ async def openai(ctx, message):
     #Wow thats annoying
     #Get response
     response = openaii.Completion.create(engine="text-babbage-001", prompt=message, temperature=1, max_tokens=400)
-    #--------------------------------------------------------
-    print(response)
-    print(response['choices'][0]['text'])
+
     response_txt = str(response['choices'][0]['text'])
-    #-----------------------------------------------------------
 
     
     responseembed.set_field_at(index=0, name="Response", value = "%s `%s`"%(message,response_txt))#set field
     await messagee.edit(embed=responseembed)#Edit original message
-    #what am i doing I HAVE ENGLISH HOMEWORK I NEED TO DO
-
+    # what am i doing I HAVE ENGLISH HOMEWORK I NEED TO DO
+    
+    # What is it with me doing this project when I have english assignments
 bot.run(os.getenv("BOT-TOKEN"))
